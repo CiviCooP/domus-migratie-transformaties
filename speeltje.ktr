@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Set to Empty</name>
+    <name>speeltje</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -143,7 +143,6 @@
   <hop> <from>Filter Tags</from><to>Create Entity Tag</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter Tags</from><to>Remove Tag Data</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter Notes</from><to>Remove Note</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Source Individuals</from><to>Set Org</to><enabled>Y</enabled> </hop>
   <hop> <from>Remove Note</from><to>Find JobName</to><enabled>Y</enabled> </hop>
   <hop> <from>Remove Tag Data</from><to>Filter Org</to><enabled>Y</enabled> </hop>
   <hop> <from>Map Gender</from><to>Create Custom Data</to><enabled>Y</enabled> </hop>
@@ -151,6 +150,8 @@
   <hop> <from>Filter Org</from><to>Filter Contact Sub Type</to><enabled>Y</enabled> </hop>
   <hop> <from>Set Org</from><to>Filter Notes</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter Org</from><to>Create Orgs</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Source Contacts</from><to>Map NULL</to><enabled>Y</enabled> </hop>
+  <hop> <from>Map NULL</from><to>Set Org</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Create Custom Data</name>
@@ -196,7 +197,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>704</xloc>
+      <xloc>720</xloc>
       <yloc>496</yloc>
       <draw>Y</draw>
       </GUI>
@@ -328,7 +329,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1008</xloc>
       <yloc>496</yloc>
       <draw>Y</draw>
       </GUI>
@@ -386,7 +387,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>480</xloc>
+      <xloc>560</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
@@ -506,7 +507,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>352</xloc>
+      <xloc>448</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
@@ -655,7 +656,7 @@
     </step>
 
   <step>
-    <name>Get Source Individuals</name>
+    <name>Get Source Contacts</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -713,6 +714,136 @@
     </step>
 
   <step>
+    <name>Map NULL</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <replaceAllByValue/>
+      <replaceAllMask/>
+      <selectFields>Y</selectFields>
+      <selectValuesType>N</selectValuesType>
+      <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>contact_id</name>
+        <value>0</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>contact_type</name>
+        <value>Individual</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>contact_sub_type</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+        </field>
+      <field>
+        <name>last_name</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+        </field>
+      <field>
+        <name>first_name</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+        </field>
+      <field>
+        <name>display_name</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+        </field>
+      <field>
+        <name>sort_name</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+        </field>
+      <field>
+        <name>birth_date</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>gender_id</name>
+        <value>4</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>note</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+        </field>
+      <field>
+        <name>graduation_year</name>
+        <value>0</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>riziv_id</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+        </field>
+      <field>
+        <name>job_code</name>
+        <value>0</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>has_practice</name>
+        <value>0</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>entity_table</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>note_subject</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      <field>
+        <name>source</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>192</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Remove Custom Data</name>
     <type>SelectValues</type>
     <description/>
@@ -728,7 +859,7 @@
       </remove>      <remove>        <name>has_practice</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>848</xloc>
+      <xloc>864</xloc>
       <yloc>496</yloc>
       <draw>Y</draw>
       </GUI>
@@ -750,7 +881,7 @@
       </remove>      <remove>        <name>note_subject</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>592</xloc>
+      <xloc>688</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
@@ -834,7 +965,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>224</xloc>
+      <xloc>320</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
