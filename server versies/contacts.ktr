@@ -76,11 +76,11 @@
   <notepads>
   </notepads>
   <connection>
-    <name>Domus BronData</name>
+    <name>Domus BronData Lokaal</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>movedb</database>
+    <database>domus_migratie</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
@@ -103,14 +103,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>Domus CiviCRM Database</name>
-    <server>localhost</server>
+    <name>Domus Test CiviCRM Database</name>
+    <server>mysql.s806.sureserver.com</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>domus_civicrm</database>
+    <database>domusmedica_test2_civicrm</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
+    <username>ErikHDB</username>
+    <password>Encrypted 2be98afc81bec86aff92d8447ed9e9882</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -160,8 +160,55 @@
   <hop> <from>Filter Huisarts</from><to>Map Gender</to><enabled>Y</enabled> </hop>
   <hop> <from>Remove Temp Field</from><to>Map Gender</to><enabled>Y</enabled> </hop>
   <hop> <from>Map Gender</from><to>Remove Unrequired Ind</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove Unrequired Ind</from><to>Create Ind</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Unrequired Ind</from><to>Create Custom</to><enabled>Y</enabled> </hop>
+  <hop> <from>Create Custom</from><to>Create Ind</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Create Custom</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Domus Test CiviCRM Database</connection>
+    <schema/>
+    <table>domus_value_physician_data</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>entity_id</column_name>
+          <stream_name>contact_id</stream_name>
+        </field>
+        <field>
+          <column_name>has_practice</column_name>
+          <stream_name>has_practice</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1264</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Create Entity Tag</name>
     <type>TableOutput</type>
@@ -173,7 +220,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus CiviCRM Database</connection>
+    <connection>Domus Test CiviCRM Database</connection>
     <schema/>
     <table>domus_entity_tag</table>
     <commit>1000</commit>
@@ -223,7 +270,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus CiviCRM Database</connection>
+    <connection>Domus Test CiviCRM Database</connection>
     <schema/>
     <table>domus_contact</table>
     <commit>1000</commit>
@@ -328,7 +375,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1248</xloc>
+      <xloc>1376</xloc>
       <yloc>480</yloc>
       <draw>Y</draw>
       </GUI>
@@ -345,7 +392,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus CiviCRM Database</connection>
+    <connection>Domus Test CiviCRM Database</connection>
     <schema/>
     <table>domus_note</table>
     <commit>1000</commit>
@@ -407,7 +454,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus CiviCRM Database</connection>
+    <connection>Domus Test CiviCRM Database</connection>
     <schema/>
     <table>domus_contact</table>
     <commit>1000</commit>
@@ -629,7 +676,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus BronData</connection>
+    <connection>Domus BronData Lokaal</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -671,7 +718,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus CiviCRM Database</connection>
+    <connection>Domus Test CiviCRM Database</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -818,8 +865,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus BronData</connection>
-    <sql>SELECT &#xa;alle.LidNummer AS contact_id,&#xa;leden.TitelCode AS source_prefix,&#xa;alle.LidSoort AS member_type,&#xa;alle.Naam AS last_name,&#xa;alle.VoorNaam AS first_name,&#xa;CAST&#x28;DATE_FORMAT&#x28;alle.GeboorteDatum, &#x22;&#x25;Y&#x25;m&#x25;d&#x22;&#x29; AS unsigned&#x29; AS birth_date,&#xa;alle.Geslacht AS gender_id,&#xa;alle.Opmerking AS note,&#xa;alle.JaarAfgestudeerd AS graduation_year,&#xa;alle.RIZIV AS riziv_id,&#xa;alle.HoofdBeroep AS job_code,&#xa;alle.ZonderPraktijk AS has_practice,&#xa;&#x22; &#x22; AS empty_space&#xa;&#xa;FROM alle_gegevens alle&#xa;LEFT JOIN leden leden ON alle.LidNummer &#x3d; leden.LidNummer</sql>
+    <connection>Domus BronData Lokaal</connection>
+    <sql>SELECT &#xa;alle.LidNummer AS contact_id,&#xa;leden.TitelCode AS source_prefix,&#xa;alle.LidSoort AS member_type,&#xa;alle.Naam AS last_name,&#xa;alle.VoorNaam AS first_name,&#xa;CAST&#x28;DATE_FORMAT&#x28;alle.GeboorteDatum, &#x22;&#x25;Y&#x25;m&#x25;d&#x22;&#x29; AS unsigned&#x29; AS birth_date,&#xa;alle.Geslacht AS gender_id,&#xa;alle.Opmerking AS note,&#xa;alle.RIZIV AS riziv_id,&#xa;alle.HoofdBeroep AS job_code,&#xa;alle.ZonderPraktijk AS has_practice,&#xa;&#x22; &#x22; AS empty_space&#xa;&#xa;FROM alle_gegevens alle&#xa;LEFT JOIN leden leden ON alle.LidNummer &#x3d; leden.LidNummer</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1096,7 +1143,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus CiviCRM Database</connection>
+    <connection>Domus Test CiviCRM Database</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -1226,12 +1273,6 @@
         </field>
       <field>
         <name>note</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      <field>
-        <name>graduation_year</name>
         <value/>
         <mask/>
         <set_empty_string>Y</set_empty_string>
@@ -1542,7 +1583,6 @@
       </remove>      <remove>        <name>gender_id</name>
       </remove>      <remove>        <name>last_name</name>
       </remove>      <remove>        <name>birth_date</name>
-      </remove>      <remove>        <name>graduation_year</name>
       </remove>      <remove>        <name>has_practice</name>
       </remove>      <remove>        <name>riziv_id</name>
       </remove>      <remove>        <name>source_prefix</name>

@@ -80,7 +80,7 @@
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>movedb</database>
+    <database>domus_migratie</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>

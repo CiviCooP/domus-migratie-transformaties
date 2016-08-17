@@ -80,7 +80,7 @@
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>movedb</database>
+    <database>domus_migratie</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
@@ -217,7 +217,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT &#xa;Lidnummer AS contact_id,&#xa;Straat AS street_address,&#xa;ZipCode AS postal_code,&#xa;Woonplaats AS city,&#xa;AdresSoortCode AS location_type_id,&#xa;Land AS source_country_id,&#xa;0 AS is_primary&#xa;&#xa;FROM adres</sql>
+    <sql>SELECT &#xa;Lidnummer AS contact_id,&#xa;Straat AS street_address,&#xa;ZipCode AS postal_code,&#xa;Woonplaats AS city,&#xa;AdresSoortCode AS location_type_id,&#xa;Land AS source_country_id,&#xa;0 AS is_primary&#xa;&#xa;FROM adressen</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
