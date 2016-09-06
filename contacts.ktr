@@ -80,7 +80,7 @@
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>movedb</database>
+    <database>domus_migratie</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
@@ -130,13 +130,6 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Filter Contact Sub Type</from><to>Set Arts</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter Contact Sub Type</from><to>Set to Empty</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set Arts</from><to>Map Gender</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set to Empty</from><to>Map Gender</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter Notes</from><to>Create Notes</to><enabled>Y</enabled> </hop>
-  <hop> <from>Create Notes</from><to>Remove Note</to><enabled>Y</enabled> </hop>
-  <hop> <from>Create Custom Data</from><to>Remove Custom Data</to><enabled>Y</enabled> </hop>
   <hop> <from>Find JobName</from><to>Find Tag</to><enabled>Y</enabled> </hop>
   <hop> <from>Create Entity Tag</from><to>Remove Tag Data</to><enabled>Y</enabled> </hop>
   <hop> <from>Find Tag</from><to>Filter Tags</to><enabled>Y</enabled> </hop>
@@ -144,17 +137,33 @@
   <hop> <from>Filter Tags</from><to>Remove Tag Data</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter Notes</from><to>Remove Note</to><enabled>Y</enabled> </hop>
   <hop> <from>Remove Note</from><to>Find JobName</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Notes</from><to>Create Notes</to><enabled>Y</enabled> </hop>
+  <hop> <from>Create Notes</from><to>Remove Note</to><enabled>Y</enabled> </hop>
   <hop> <from>Remove Tag Data</from><to>Filter Org</to><enabled>Y</enabled> </hop>
-  <hop> <from>Map Gender</from><to>Create Custom Data</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove Custom Data</from><to>Create Individuals</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter Org</from><to>Filter Contact Sub Type</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set Org</from><to>Filter Notes</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter Org</from><to>Create Orgs</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Source Contacts</from><to>Map NULL</to><enabled>Y</enabled> </hop>
-  <hop> <from>Map NULL</from><to>Set Org</to><enabled>Y</enabled> </hop>
+  <hop> <from>Org Constants</from><to>Org Addressee</to><enabled>Y</enabled> </hop>
+  <hop> <from>Org Addressee</from><to>Remove Unrequired Org</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Unrequired Org</from><to>Create Orgs</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Org</from><to>Org Names</to><enabled>Y</enabled> </hop>
+  <hop> <from>Org Names</from><to>Org Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>General Constants</from><to>Get Sys Date</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Sys Date</from><to>Set Dates</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Dates</from><to>Filter Notes</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Org</from><to>Ind Names</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ind Names</from><to>Ind Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ind Constants</from><to>Ind Comm Fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ind Comm Fields</from><to>Filter Huisarts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Huisarts</from><to>Lookup Physician</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Physician</from><to>Set Contact Sub type</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Contact Sub type</from><to>Remove Temp Field</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Huisarts</from><to>Map Gender</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Temp Field</from><to>Map Gender</to><enabled>Y</enabled> </hop>
+  <hop> <from>Map Gender</from><to>Remove Unrequired Ind</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Unrequired Ind</from><to>Create Custom</to><enabled>Y</enabled> </hop>
+  <hop> <from>Create Custom</from><to>Create Ind</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Source Contacts</from><to>General Constants</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Create Custom Data</name>
+    <name>Create Custom</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -187,18 +196,14 @@
           <stream_name>contact_id</stream_name>
         </field>
         <field>
-          <column_name>graduation_year</column_name>
-          <stream_name>graduation_year</stream_name>
-        </field>
-        <field>
           <column_name>has_practice</column_name>
           <stream_name>has_practice</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>720</xloc>
-      <yloc>496</yloc>
+      <xloc>1248</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -247,14 +252,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>480</xloc>
-      <yloc>176</yloc>
+      <xloc>336</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Create Individuals</name>
+    <name>Create Ind</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -295,6 +300,10 @@
           <stream_name>contact_sub_type</stream_name>
         </field>
         <field>
+          <column_name>external_identifier</column_name>
+          <stream_name>riziv_id</stream_name>
+        </field>
+        <field>
           <column_name>sort_name</column_name>
           <stream_name>sort_name</stream_name>
         </field>
@@ -323,14 +332,54 @@
           <stream_name>birth_date</stream_name>
         </field>
         <field>
-          <column_name>external_identifier</column_name>
-          <stream_name>riziv_id</stream_name>
+          <column_name>preferred_language</column_name>
+          <stream_name>preferred_language</stream_name>
+        </field>
+        <field>
+          <column_name>preferred_mail_format</column_name>
+          <stream_name>preferred_mail_format</stream_name>
+        </field>
+        <field>
+          <column_name>communication_style_id</column_name>
+          <stream_name>communication_style</stream_name>
+        </field>
+        <field>
+          <column_name>email_greeting_id</column_name>
+          <stream_name>email_greeting_id</stream_name>
+        </field>
+        <field>
+          <column_name>email_greeting_display</column_name>
+          <stream_name>email_greeting_display</stream_name>
+        </field>
+        <field>
+          <column_name>postal_greeting_id</column_name>
+          <stream_name>postal_greeting_id</stream_name>
+        </field>
+        <field>
+          <column_name>postal_greeting_display</column_name>
+          <stream_name>postal_greeting_display</stream_name>
+        </field>
+        <field>
+          <column_name>addressee_id</column_name>
+          <stream_name>addressee_id</stream_name>
+        </field>
+        <field>
+          <column_name>addressee_display</column_name>
+          <stream_name>addressee_display</stream_name>
+        </field>
+        <field>
+          <column_name>created_date</column_name>
+          <stream_name>created_date</stream_name>
+        </field>
+        <field>
+          <column_name>modified_date</column_name>
+          <stream_name>modified_date</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1008</xloc>
-      <yloc>496</yloc>
+      <xloc>1344</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -384,10 +433,14 @@
           <column_name>subject</column_name>
           <stream_name>note_subject</stream_name>
         </field>
+        <field>
+          <column_name>modified_date</column_name>
+          <stream_name>modified_date</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>560</xloc>
+      <xloc>672</xloc>
       <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
@@ -427,8 +480,24 @@
           <stream_name>contact_id</stream_name>
         </field>
         <field>
-          <column_name>contact_type</column_name>
-          <stream_name>contact_type</stream_name>
+          <column_name>source</column_name>
+          <stream_name>source</stream_name>
+        </field>
+        <field>
+          <column_name>preferred_language</column_name>
+          <stream_name>preferred_language</stream_name>
+        </field>
+        <field>
+          <column_name>preferred_mail_format</column_name>
+          <stream_name>preferred_mail_format</stream_name>
+        </field>
+        <field>
+          <column_name>created_date</column_name>
+          <stream_name>created_date</stream_name>
+        </field>
+        <field>
+          <column_name>organization_name</column_name>
+          <stream_name>organization_name</stream_name>
         </field>
         <field>
           <column_name>display_name</column_name>
@@ -436,27 +505,43 @@
         </field>
         <field>
           <column_name>sort_name</column_name>
-          <stream_name>display_name</stream_name>
+          <stream_name>sort_name</stream_name>
         </field>
         <field>
-          <column_name>source</column_name>
-          <stream_name>source</stream_name>
+          <column_name>legal_name</column_name>
+          <stream_name>legal_name</stream_name>
         </field>
         <field>
-          <column_name>organization_name</column_name>
-          <stream_name>display_name</stream_name>
+          <column_name>contact_type</column_name>
+          <stream_name>contact_type</stream_name>
+        </field>
+        <field>
+          <column_name>addressee_id</column_name>
+          <stream_name>addressee_id</stream_name>
+        </field>
+        <field>
+          <column_name>addressee_display</column_name>
+          <stream_name>addressee_display</stream_name>
+        </field>
+        <field>
+          <column_name>modified_date</column_name>
+          <stream_name>modified_date</stream_name>
+        </field>
+        <field>
+          <column_name>communication_style_id</column_name>
+          <stream_name>communication_style</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
-      <yloc>352</yloc>
+      <xloc>688</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Filter Contact Sub Type</name>
+    <name>Filter Huisarts</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -466,20 +551,20 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Set Arts</send_true_to>
-<send_false_to>Set to Empty</send_false_to>
+<send_true_to>Lookup Physician</send_true_to>
+<send_false_to>Map Gender</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>contact_sub_type</leftvalue>
+ <leftvalue>member_type</leftvalue>
  <function>&#x3d;</function>
  <rightvalue/>
  <value><name>constant</name><type>String</type><text>A</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>352</xloc>
-      <yloc>496</yloc>
+      <xloc>528</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -501,13 +586,13 @@
 <condition>
  <negated>N</negated>
  <leftvalue>note</leftvalue>
- <function>&#x3c;&#x3e;</function>
+ <function>IS NOT NULL</function>
  <rightvalue/>
  <value><name>constant</name><type>String</type><text>&#x27;&#x27;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
+      <xloc>560</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
@@ -524,20 +609,32 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Create Orgs</send_true_to>
-<send_false_to>Filter Contact Sub Type</send_false_to>
+<send_true_to>Org Names</send_true_to>
+<send_false_to>Ind Names</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>contact_type</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>Organization</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>source_prefix</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>3</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>source_prefix</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>4</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>592</xloc>
-      <yloc>352</yloc>
+      <xloc>48</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -565,7 +662,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>368</xloc>
+      <xloc>208</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
       </GUI>
@@ -607,8 +704,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>96</xloc>
-      <yloc>256</yloc>
+      <xloc>48</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -649,8 +746,113 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>224</xloc>
+      <xloc>48</xloc>
       <yloc>256</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>General Constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>entity_table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>civicrm_contact</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>note_subject</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Opmerking uit Migratie Access Database</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>source</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Migratie Access Database</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>preferred_language</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>nl_NL</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>preferred_mail_format</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Both</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>comma</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>,</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>communication_style</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>192</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -667,7 +869,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT &#xa;alle.LidNummer AS contact_id,&#xa;leden.TitelCode AS contact_type,&#xa;alle.LidSoort AS contact_sub_type,&#xa;alle.Naam AS last_name,&#xa;alle.VoorNaam AS first_name,&#xa;CONCAT&#x28;alle.VoorNaam, &#x22; &#x22;, alle.Naam&#x29; AS display_name,&#xa;CONCAT&#x28;alle.Naam, &#x22;, &#x22;, alle.VoorNaam&#x29; AS sort_name,&#xa;CAST&#x28;DATE_FORMAT&#x28;alle.GeboorteDatum, &#x22;&#x25;Y&#x25;m&#x25;d&#x22;&#x29; AS unsigned&#x29; AS birth_date,&#xa;alle.Geslacht AS gender_id,&#xa;alle.Opmerking AS note,&#xa;alle.JaarAfgestudeerd AS graduation_year,&#xa;alle.RIZIV AS riziv_id,&#xa;alle.HoofdBeroep AS job_code,&#xa;alle.ZonderPraktijk AS has_practice,&#xa;&#x22;civicrm_contact&#x22; AS entity_table,&#xa;&#x22;Opmerking uit Access database&#x22; AS note_subject,&#xa;&#x22;Migratie Access database&#x22; AS source&#xa;&#xa;FROM alle_gegevens alle&#xa;LEFT JOIN leden leden ON alle.LidNummer &#x3d; leden.LidNummer</sql>
+    <sql>SELECT &#xa;alle.LidNummer AS contact_id,&#xa;leden.TitelCode AS source_prefix,&#xa;alle.LidSoort AS member_type,&#xa;alle.Naam AS last_name,&#xa;alle.VoorNaam AS first_name,&#xa;CAST&#x28;DATE_FORMAT&#x28;alle.GeboorteDatum, &#x22;&#x25;Y&#x25;m&#x25;d&#x22;&#x29; AS unsigned&#x29; AS birth_date,&#xa;alle.Geslacht AS gender_id,&#xa;alle.Opmerking AS note,&#xa;alle.RIZIV AS riziv_id,&#xa;alle.HoofdBeroep AS job_code,&#xa;alle.ZonderPraktijk AS has_practice,&#xa;&#x22; &#x22; AS empty_space&#xa;&#xa;FROM alle_gegevens alle&#xa;LEFT JOIN leden leden ON alle.LidNummer &#x3d; leden.LidNummer</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -675,8 +877,302 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>64</xloc>
+      <xloc>48</xloc>
       <yloc>80</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Sys Date</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>sys_date</name>
+        <type>system date &#x28;variable&#x29;</type>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>336</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ind Comm Fields</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>addressee_display</field_name>
+<calc_type>ADD3</calc_type>
+<field_a>addressee</field_a>
+<field_b>empty_space</field_b>
+<field_c>first_name</field_c>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>email_greeting_display</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>addressee_display</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>postal_greeting_display</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>addressee_display</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>400</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ind Constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>addressee</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Beste </nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>contact_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Individual</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>addressee_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>email_greeting_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>postal_greeting_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>physician</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>physician</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>contact_sub_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>288</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ind Names</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>display_name</field_name>
+<calc_type>ADD3</calc_type>
+<field_a>first_name</field_a>
+<field_b>empty_space</field_b>
+<field_c>last_name</field_c>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>in_between</field_name>
+<calc_type>ADD</calc_type>
+<field_a>last_name</field_a>
+<field_b>comma</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>sort_name</field_name>
+<calc_type>ADD3</calc_type>
+<field_a>in_between</field_a>
+<field_b>empty_space</field_b>
+<field_c>first_name</field_c>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>176</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Physician</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Domus CiviCRM Database</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>civicrm_contact_type</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>physician</name>
+        <field>name</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>name</name>
+        <rename>sub_type</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>608</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -704,18 +1200,22 @@
         <source_value>V</source_value>
         <target_value>1</target_value>
       </field>
+      <field>
+        <source_value>O</source_value>
+        <target_value>4</target_value>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>592</xloc>
-      <yloc>496</yloc>
+      <xloc>976</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Map NULL</name>
-    <type>IfNull</type>
+    <name>Org Addressee</name>
+    <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -724,128 +1224,31 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <replaceAllByValue/>
-      <replaceAllMask/>
-      <selectFields>Y</selectFields>
-      <selectValuesType>N</selectValuesType>
-      <setEmptyStringAll>N</setEmptyStringAll>
-    <valuetypes>
-      </valuetypes>
-    <fields>
-      <field>
-        <name>contact_id</name>
-        <value>0</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>contact_type</name>
-        <value>Individual</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>contact_sub_type</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      <field>
-        <name>last_name</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      <field>
-        <name>first_name</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      <field>
-        <name>display_name</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      <field>
-        <name>sort_name</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      <field>
-        <name>birth_date</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>gender_id</name>
-        <value>4</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>note</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      <field>
-        <name>graduation_year</name>
-        <value>0</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>riziv_id</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      <field>
-        <name>job_code</name>
-        <value>0</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>has_practice</name>
-        <value>0</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>entity_table</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>note_subject</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      <field>
-        <name>source</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      </fields>
+       <calculation><field_name>addressee_display</field_name>
+<calc_type>ADD3</calc_type>
+<field_a>addressee</field_a>
+<field_b>empty_space</field_b>
+<field_c>organization_name</field_c>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>192</xloc>
-      <yloc>80</yloc>
+      <xloc>384</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Remove Custom Data</name>
-    <type>SelectValues</type>
+    <name>Org Constants</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -854,13 +1257,123 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>graduation_year</name>
-      </remove>      <remove>        <name>has_practice</name>
-      </remove>    </fields>     <cluster_schema/>
+    <fields>
+      <field>
+        <name>addressee</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Beste </nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>contact_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Organization</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>addressee_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
-      <yloc>496</yloc>
+      <xloc>272</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Org Names</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>organization_name</field_name>
+<calc_type>ADD3</calc_type>
+<field_a>first_name</field_a>
+<field_b>empty_space</field_b>
+<field_c>last_name</field_c>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>display_name</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>organization_name</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>sort_name</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>organization_name</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>legal_name</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>organization_name</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>176</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -881,7 +1394,7 @@
       </remove>      <remove>        <name>note_subject</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>688</xloc>
+      <xloc>752</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
@@ -905,15 +1418,15 @@
       </remove>      <remove>        <name>tag_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>592</xloc>
+      <xloc>464</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Set Arts</name>
-    <type>ValueMapper</type>
+    <name>Remove Temp Field</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -922,26 +1435,19 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <field_to_use>contact_sub_type</field_to_use>
-    <target_field/>
-    <non_match_default>NULL</non_match_default>
-    <fields>
-      <field>
-        <source_value>A</source_value>
-        <target_value>Arts</target_value>
-      </field>
-    </fields>
-     <cluster_schema/>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>sub_type</name>
+      </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>480</xloc>
-      <yloc>496</yloc>
+      <xloc>896</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Set Org</name>
-    <type>ValueMapper</type>
+    <name>Remove Unrequired Ind</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -950,30 +1456,26 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <field_to_use>contact_type</field_to_use>
-    <target_field/>
-    <non_match_default>Individual</non_match_default>
-    <fields>
-      <field>
-        <source_value>3</source_value>
-        <target_value>Organization</target_value>
-      </field>
-      <field>
-        <source_value>4</source_value>
-        <target_value>Organization</target_value>
-      </field>
-    </fields>
-     <cluster_schema/>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>sys_date</name>
+      </remove>      <remove>        <name>source_prefix</name>
+      </remove>      <remove>        <name>physician</name>
+      </remove>      <remove>        <name>member_type</name>
+      </remove>      <remove>        <name>in_between</name>
+      </remove>      <remove>        <name>empty_space</name>
+      </remove>      <remove>        <name>comma</name>
+      </remove>      <remove>        <name>addressee</name>
+      </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>320</xloc>
-      <yloc>80</yloc>
+      <xloc>1104</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Set to Empty</name>
-    <type>SetValueConstant</type>
+    <name>Remove Unrequired Org</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -982,19 +1484,95 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-   <usevar>N</usevar>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>addressee</name>
+      </remove>      <remove>        <name>empty_space</name>
+      </remove>      <remove>        <name>member_type</name>
+      </remove>      <remove>        <name>first_name</name>
+      </remove>      <remove>        <name>gender_id</name>
+      </remove>      <remove>        <name>last_name</name>
+      </remove>      <remove>        <name>birth_date</name>
+      </remove>      <remove>        <name>has_practice</name>
+      </remove>      <remove>        <name>riziv_id</name>
+      </remove>      <remove>        <name>source_prefix</name>
+      </remove>      <remove>        <name>sys_date</name>
+      </remove>      <remove>        <name>comma</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>528</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Contact Sub type</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
     <fields>
       <field>
         <name>contact_sub_type</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
+        <replaceby>sub_type</replaceby>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>480</xloc>
-      <yloc>592</yloc>
+      <xloc>752</xloc>
+      <yloc>560</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Dates</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>created_date</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>sys_date</field_a>
+<field_b/>
+<field_c/>
+<value_type>Date</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask>yyyy-MM-dd HH&#x3a;mm&#x3a;ss</conversion_mask>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>modified_date</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>created_date</field_a>
+<field_b/>
+<field_c/>
+<value_type>Date</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>448</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
