@@ -1349,7 +1349,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT&#xa;  LidNummer&#xa;, LidSoort&#xa;, Naam&#xa;, Voornaam&#xa;, GeboorteDatum&#xa;, Geslacht&#xa;, Opmerking&#xa;, LaatsteUpdate&#xa;, JaarAfgestudeerd&#xa;, RIZIV&#xa;, Lid&#xa;, TitelCode&#xa;, HoofdBeroep&#xa;, Hibo&#xa;, ZonderPraktijk&#xa;, TijdeleijkZonderPraktijk&#xa;, NietAanschrijven&#xa;, Website&#xa;, Domiciliering&#xa;FROM leden&#xa;ORDER BY LidNummer&#xa;</sql>
+    <sql>SELECT&#xa;  LidNummer&#xa;, LidSoort&#xa;, Naam&#xa;, Voornaam&#xa;, GeboorteDatum&#xa;, Geslacht&#xa;, Opmerking&#xa;, LaatsteUpdate&#xa;, JaarAfgestudeerd&#xa;, RIZIV&#xa;, Lid&#xa;, TitelCode&#xa;, HoofdBeroep&#xa;, Hibo&#xa;, ZonderPraktijk&#xa;, TijdeleijkZonderPraktijk&#xa;, NietAanschrijven&#xa;, Website&#xa;, Domiciliering&#xa;FROM leden&#xa;WHERE Lid &#x3d; 1&#xa;ORDER BY LidNummer&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

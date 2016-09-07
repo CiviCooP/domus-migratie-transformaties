@@ -869,7 +869,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT &#xa;alle.LidNummer AS contact_id,&#xa;leden.TitelCode AS source_prefix,&#xa;alle.LidSoort AS member_type,&#xa;alle.Naam AS last_name,&#xa;alle.VoorNaam AS first_name,&#xa;CAST&#x28;DATE_FORMAT&#x28;alle.GeboorteDatum, &#x22;&#x25;Y&#x25;m&#x25;d&#x22;&#x29; AS unsigned&#x29; AS birth_date,&#xa;alle.Geslacht AS gender_id,&#xa;alle.Opmerking AS note,&#xa;alle.RIZIV AS riziv_id,&#xa;alle.HoofdBeroep AS job_code,&#xa;alle.ZonderPraktijk AS has_practice,&#xa;&#x22; &#x22; AS empty_space&#xa;&#xa;FROM alle_gegevens alle&#xa;LEFT JOIN leden leden ON alle.LidNummer &#x3d; leden.LidNummer</sql>
+    <sql>SELECT &#xa;LidNummer AS contact_id,&#xa;TitelCode AS source_prefix,&#xa;LidSoort AS member_type,&#xa;Naam AS last_name,&#xa;VoorNaam AS first_name,&#xa;CAST&#x28;DATE_FORMAT&#x28;GeboorteDatum, &#x22;&#x25;Y&#x25;m&#x25;d&#x22;&#x29; AS unsigned&#x29; AS birth_date,&#xa;Geslacht AS gender_id,&#xa;Opmerking AS note,&#xa;RIZIV AS riziv_id,&#xa;HoofdBeroep AS job_code,&#xa;ZonderPraktijk AS has_practice,&#xa;&#x22; &#x22; AS empty_space&#xa;&#xa;FROM leden</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
