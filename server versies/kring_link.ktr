@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>adres</name>
+    <name>kring_link</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -67,41 +67,14 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2016&#x2f;06&#x2f;28 17&#x3a;26&#x3a;39.498</created_date>
+  <created_date>2016&#x2f;08&#x2f;17 13&#x3a;19&#x3a;46.275</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2016&#x2f;06&#x2f;28 17&#x3a;26&#x3a;39.498</modified_date>
+  <modified_date>2016&#x2f;08&#x2f;17 13&#x3a;19&#x3a;46.275</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>Domus BronData</name>
-    <server>localhost</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>domus_migratie</database>
-    <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <connection>
     <name>Domus Accept CiviCRM Database</name>
     <server>mysql.s806.sureserver.com</server>
@@ -129,24 +102,41 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>Domus BronData</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>domus_migratie</database>
+    <port>3306</port>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
-  <hop> <from>Get Source Address</from><to>Lookup Contact</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Contact</from><to>Log Contact Lookup Error</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Address Constants</from><to>Location Praktijk Lookup</to><enabled>Y</enabled> </hop>
-  <hop> <from>Location Praktijk Lookup</from><to>Location Correspondentie Lookup</to><enabled>Y</enabled> </hop>
-  <hop> <from>Location Correspondentie Lookup</from><to>Filter Location</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Country ID</from><to>Create Address</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Contact</from><to>Filter Contact Exists</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter Contact Exists</from><to>Add Address Constants</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter Contact Exists</from><to>No Contact Error</to><enabled>Y</enabled> </hop>
-  <hop> <from>No Contact Error</from><to>Add error address</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter Location</from><to>Set Praktijk</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set Praktijk</from><to>Lookup Country ID</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter Location</from><to>Set Correspondentie</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set Correspondentie</from><to>Lookup Country ID</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Constants</from><to>Lookup Relation Type</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Relation Type</from><to>Lookup Kring</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Source Data</from><to>Add Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Kring</from><to>Add Relation</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Add Address Constants</name>
+    <name>Add Constants</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -158,31 +148,31 @@
            </partitioning>
     <fields>
       <field>
-        <name>location_praktijk</name>
+        <name>kring_name_a_b</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>praktijkadres</nullif>
+        <nullif>is lid van kring</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>location_correspondentie</name>
+        <name>kring_name_b_a</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>correspondentieadres</nullif>
+        <nullif>kringlid is</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>is_primary</name>
+        <name>is_active</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -193,17 +183,41 @@
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
+      <field>
+        <name>is_permission</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>kring_subtype</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Huisartsenkring</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>544</xloc>
+      <xloc>208</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Add error address</name>
+    <name>Add Relation</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -215,73 +229,7 @@
            </partitioning>
     <connection>Domus Accept CiviCRM Database</connection>
     <schema/>
-    <table>error_address</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>contact_id</column_name>
-          <stream_name>Lidnummer</stream_name>
-        </field>
-        <field>
-          <column_name>street_address</column_name>
-          <stream_name>Straat</stream_name>
-        </field>
-        <field>
-          <column_name>postal_code</column_name>
-          <stream_name>ZipCode</stream_name>
-        </field>
-        <field>
-          <column_name>city</column_name>
-          <stream_name>Woonplaats</stream_name>
-        </field>
-        <field>
-          <column_name>location_type_id</column_name>
-          <stream_name>AdresSoortCode</stream_name>
-        </field>
-        <field>
-          <column_name>country</column_name>
-          <stream_name>Land</stream_name>
-        </field>
-        <field>
-          <column_name>error_message</column_name>
-          <stream_name>no_contact_message</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>496</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Create Address</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
-    <schema/>
-    <table>domus_address</table>
+    <table>domus_relationship</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -298,114 +246,36 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>contact_id</column_name>
-          <stream_name>contact_id</stream_name>
+          <column_name>contact_id_a</column_name>
+          <stream_name>Lidnummer</stream_name>
         </field>
         <field>
-          <column_name>street_address</column_name>
-          <stream_name>Straat</stream_name>
+          <column_name>contact_id_b</column_name>
+          <stream_name>contact_id_b</stream_name>
         </field>
         <field>
-          <column_name>postal_code</column_name>
-          <stream_name>ZipCode</stream_name>
+          <column_name>relationship_type_id</column_name>
+          <stream_name>relationship_type_id</stream_name>
         </field>
         <field>
-          <column_name>city</column_name>
-          <stream_name>Woonplaats</stream_name>
+          <column_name>is_active</column_name>
+          <stream_name>is_active</stream_name>
         </field>
         <field>
-          <column_name>location_type_id</column_name>
-          <stream_name>location_type_id</stream_name>
-        </field>
-        <field>
-          <column_name>is_primary</column_name>
-          <stream_name>is_primary</stream_name>
-        </field>
-        <field>
-          <column_name>country_id</column_name>
-          <stream_name>country_id</stream_name>
+          <column_name>is_permission_a_b</column_name>
+          <stream_name>is_permission</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>832</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Filter Contact Exists</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Add Address Constants</send_true_to>
-<send_false_to>No Contact Error</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>contact_id</leftvalue>
- <function>&#x3c;&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>368</xloc>
+      <xloc>656</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Filter Location</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Set Praktijk</send_true_to>
-<send_false_to>Set Correspondentie</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>AdresSoortCode</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Integer</type><text>2</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;</mask></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <leftvalue>AdresSoortCode</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Integer</type><text>7</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;</mask></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>384</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Source Address</name>
+    <name>Get Source Data</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -416,7 +286,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT &#xa;Lidnummer&#xa;, Straat&#xa;, ZipCode&#xa;, Woonplaats&#xa;, AdresSoortCode&#xa;, Land&#xa;&#xa;FROM adressen</sql>
+    <sql>SELECT&#xa;  KringLinkCode&#xa;, KringCode&#xa;, Lidnummer&#xa;FROM kringen_link&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -431,144 +301,7 @@
     </step>
 
   <step>
-    <name>Location Correspondentie Lookup</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>civicrm_location_type</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>location_correspondentie</name>
-        <field>name</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>correspondentie_id</rename>
-        <default>0</default>
-        <type>Integer</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>960</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Location Praktijk Lookup</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>civicrm_location_type</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>location_praktijk</name>
-        <field>name</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>praktijk_id</rename>
-        <default>0</default>
-        <type>Integer</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Log Contact Lookup Error</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_rowlevel</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage/>
-    <fields>
-      <field>
-        <name>Lidnummer</name>
-        </field>
-      <field>
-        <name>Straat</name>
-        </field>
-      <field>
-        <name>ZipCode</name>
-        </field>
-      <field>
-        <name>Woonplaats</name>
-        </field>
-      <field>
-        <name>AdresSoortCode</name>
-        </field>
-      <field>
-        <name>Land</name>
-        </field>
-      <field>
-        <name>err_desc</name>
-        </field>
-      <field>
-        <name>err_field</name>
-        </field>
-      <field>
-        <name>err_code</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Lookup Contact</name>
+    <name>Lookup Kring</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -589,28 +322,34 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>Y</eat_row_on_failure>
       <key>
-        <name>Lidnummer</name>
-        <field>id</field>
+        <name>KringCode</name>
+        <field>external_identifier</field>
         <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>kring_subtype</name>
+        <field>contact_sub_type</field>
+        <condition>LIKE</condition>
         <name2/>
       </key>
       <value>
         <name>id</name>
-        <rename>contact_id</rename>
-        <default>0</default>
+        <rename>contact_id_b</rename>
+        <default/>
         <type>Integer</type>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
+      <xloc>512</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Lookup Country ID</name>
+    <name>Lookup Relation Type</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -626,143 +365,38 @@
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>civicrm_country</table>
+      <table>civicrm_relationship_type</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>Land</name>
-        <field>iso_code</field>
+        <name>kring_name_a_b</name>
+        <field>name_a_b</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>kring_name_b_a</name>
+        <field>name_b_a</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <value>
         <name>id</name>
-        <rename>country_id</rename>
-        <default>1020</default>
+        <rename>relationship_type_id</rename>
+        <default/>
         <type>Integer</type>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>672</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>No Contact Error</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>no_contact_message</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>No contact found in table domus_civicrm</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>368</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set Correspondentie</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>location_type_id</field_name>
-<calc_type>COPY_FIELD</calc_type>
-<field_a>correspondentie_id</field_a>
-<field_b/>
-<field_c/>
-<value_type>Integer</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>496</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set Praktijk</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>location_type_id</field_name>
-<calc_type>COPY_FIELD</calc_type>
-<field_a>praktijk_id</field_a>
-<field_b/>
-<field_c/>
-<value_type>Integer</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>496</xloc>
-      <yloc>336</yloc>
+      <xloc>352</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
-      <error>
-        <source_step>Lookup Contact</source_step>
-        <target_step>Log Contact Lookup Error</target_step>
-        <is_enabled>Y</is_enabled>
-        <nr_valuename/>
-        <descriptions_valuename>err_desc</descriptions_valuename>
-        <fields_valuename>err_field</fields_valuename>
-        <codes_valuename>err_code</codes_valuename>
-        <max_errors/>
-        <max_pct_errors/>
-        <min_pct_rows/>
-      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
