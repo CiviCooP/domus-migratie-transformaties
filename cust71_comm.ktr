@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>kring_bestuur</name>
+    <name>cust71_comm</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -67,9 +67,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2016&#x2f;08&#x2f;17 13&#x3a;19&#x3a;46.275</created_date>
+  <created_date>2016&#x2f;06&#x2f;28 17&#x3a;26&#x3a;39.498</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2016&#x2f;08&#x2f;17 13&#x3a;19&#x3a;46.275</modified_date>
+  <modified_date>2016&#x2f;06&#x2f;28 17&#x3a;26&#x3a;39.498</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -130,22 +130,31 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get Source Data</from><to>Add Constants</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Constants</from><to>Lookup Vrz RelType</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Vrz RelType</from><to>Lookup Secr RelType</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Secr RelType</from><to>Lookup Penn RelType</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Penn RelType</from><to>Lookup Kring</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Kring</from><to>Voorzitter&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Voorzitter&#x3f;</from><to>Add Voorzitter Relation</to><enabled>Y</enabled> </hop>
-  <hop> <from>Voorzitter&#x3f;</from><to>Secretaris&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Voorzitter Relation</from><to>Secretaris&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Secretaris&#x3f;</from><to>Add Secretaris Relation</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Secretaris Relation</from><to>Penningmeester&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Secretaris&#x3f;</from><to>Penningmeester&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Penningmeester&#x3f;</from><to>Add Penningmeester Relation</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Contact</from><to>Log Contact Lookup Error</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Contact Exists</from><to>No Contact Error</to><enabled>Y</enabled> </hop>
+  <hop> <from>No Contact Error</from><to>Add error comm</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Contact Exists</from><to>Add Comm Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Loc Corr Lookup</from><to>Option Group Lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Option Group Lookup</from><to>Mobiel Lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mobiel Lookup</from><to>Vast Lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Vast Lookup</from><to>Filter Emails</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Cust71</from><to>Lookup Contact</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Contact</from><to>Filter Contact Exists</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Emails</from><to>Filter Phone</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Email</from><to>Filter Phone</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Emails</from><to>Add Email</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Comm Constants</from><to>Loc Corr Lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Phone</from><to>Add Phone</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Phone</from><to>Filter GSM</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Phone</from><to>Filter GSM</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter GSM</from><to>Lookup phone</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup phone</from><to>First Phone&#x3f;</to><enabled>Y</enabled> </hop>
+  <hop> <from>First Phone&#x3f;</from><to>Add GSM</to><enabled>Y</enabled> </hop>
+  <hop> <from>First Phone&#x3f;</from><to>Set field value to a constant</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set field value to a constant</from><to>Add GSM</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Add Constants</name>
+    <name>Add Comm Constants</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -157,79 +166,55 @@
            </partitioning>
     <fields>
       <field>
-        <name>voorzitter_name_a_b</name>
+        <name>location_correspondentie</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>is voorzitter van</nullif>
+        <nullif>correspondentieadres</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>voorzitter_name_b_a</name>
+        <name>mobiel</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>voorzitter is</nullif>
+        <nullif>Mobile</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>secretaris_name_a_b</name>
+        <name>vast</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>is secretaris van</nullif>
+        <nullif>Vast</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>secretaris_name_b_a</name>
+        <name>phone_type</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>secretaris is</nullif>
+        <nullif>phone_type</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>penningmeester_name_a_b</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>is penningmeester van</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>penningmeester_name_b_a</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>penningmeester is</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>is_active</name>
+        <name>is_primary</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -240,41 +225,17 @@
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
-      <field>
-        <name>is_permission</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>0</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>kring_subtype</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Huisartsenkring</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>192</xloc>
-      <yloc>32</yloc>
+      <xloc>528</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Add Penningmeester Relation</name>
+    <name>Add Email</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -286,9 +247,9 @@
            </partitioning>
     <connection>Domus Lokaal CiviCRM</connection>
     <schema/>
-    <table>domus_relationship</table>
+    <table>domus_email</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
@@ -303,94 +264,32 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>contact_id_a</column_name>
-          <stream_name>Penningmeester</stream_name>
+          <column_name>contact_id</column_name>
+          <stream_name>contact_id</stream_name>
         </field>
         <field>
-          <column_name>contact_id_b</column_name>
-          <stream_name>contact_id_b</stream_name>
+          <column_name>location_type_id</column_name>
+          <stream_name>correspondentie_id</stream_name>
         </field>
         <field>
-          <column_name>relationship_type_id</column_name>
-          <stream_name>penningmeester_relation_type_id</stream_name>
+          <column_name>email</column_name>
+          <stream_name>CSF_EMAIL</stream_name>
         </field>
         <field>
-          <column_name>is_active</column_name>
-          <stream_name>is_active</stream_name>
-        </field>
-        <field>
-          <column_name>is_permission_a_b</column_name>
-          <stream_name>is_permission</stream_name>
+          <column_name>is_primary</column_name>
+          <stream_name>is_primary</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add Secretaris Relation</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Domus Lokaal CiviCRM</connection>
-    <schema/>
-    <table>domus_relationship</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>contact_id_a</column_name>
-          <stream_name>Secretaris</stream_name>
-        </field>
-        <field>
-          <column_name>contact_id_b</column_name>
-          <stream_name>contact_id_b</stream_name>
-        </field>
-        <field>
-          <column_name>relationship_type_id</column_name>
-          <stream_name>secretaris_relation_type_id</stream_name>
-        </field>
-        <field>
-          <column_name>is_active</column_name>
-          <stream_name>is_active</stream_name>
-        </field>
-        <field>
-          <column_name>is_permission_a_b</column_name>
-          <stream_name>is_permission</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
+      <xloc>480</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Add Voorzitter Relation</name>
+    <name>Add error comm</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -402,9 +301,9 @@
            </partitioning>
     <connection>Domus Lokaal CiviCRM</connection>
     <schema/>
-    <table>domus_relationship</table>
+    <table>error_comm</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
@@ -419,36 +318,87 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>contact_id_a</column_name>
-          <stream_name>Voorzitter</stream_name>
+          <column_name>lidnummer</column_name>
+          <stream_name>CSF_REF</stream_name>
         </field>
         <field>
-          <column_name>contact_id_b</column_name>
-          <stream_name>contact_id_b</stream_name>
-        </field>
-        <field>
-          <column_name>relationship_type_id</column_name>
-          <stream_name>voorzitter_relation_type_id</stream_name>
-        </field>
-        <field>
-          <column_name>is_active</column_name>
-          <stream_name>is_active</stream_name>
-        </field>
-        <field>
-          <column_name>is_permission_a_b</column_name>
-          <stream_name>is_permission</stream_name>
+          <column_name>error_message</column_name>
+          <stream_name>no_contact_message</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
-      <yloc>160</yloc>
+      <xloc>480</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get Source Data</name>
+    <name>Filter Contact Exists</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Add Comm Constants</send_true_to>
+<send_false_to>No Contact Error</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>contact_id</leftvalue>
+ <function>&#x3c;&#x3e;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>352</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter Emails</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Add Email</send_true_to>
+<send_false_to>Filter Phone</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>CSF_EMAIL</leftvalue>
+   <function>IS NOT NULL</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Integer</type><text>4</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;</mask></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>176</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Cust71</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -459,7 +409,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT&#xa;  KringCode&#xa;, Voorzitter&#xa;, Secretaris&#xa;, Penningmeester&#xa;FROM kringen&#xa;WHERE &#x28;Voorzitter IS NOT NULL AND Voorzitter &#x3c;&#x3e; &#x27;&#x27; AND Voorzitter &#x3c;&#x3e; 0&#x29; &#xa;OR &#x28;Secretaris IS NOT NULL AND Secretaris &#x3c;&#x3e; &#x27;&#x27; AND Secretaris &#x3c;&#x3e; 0&#x29; &#xa;OR &#x28;Penningmeester IS NOT NULL AND Penningmeester &#x3c;&#x3e; &#x27;&#x27; AND Penningmeester &#x3c;&#x3e; 0&#x29;&#xa;</sql>
+    <sql>SELECT&#xa;  CSF_REF&#xa;, CSF_PHONE&#xa;, CSF_EMAIL&#xa;, CSF_GSM&#xa;&#xa;FROM cust71&#xa;&#xa;WHERE CSF_PHONE IS NOT NULL OR CSF_EMAIL IS NOT NULL OR CSF_GSM IS NOT NULL&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -467,14 +417,103 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>64</xloc>
-      <yloc>32</yloc>
+      <xloc>96</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Lookup Kring</name>
+    <name>Loc Corr Lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Domus Lokaal CiviCRM</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>civicrm_location_type</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>location_correspondentie</name>
+        <field>name</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>correspondentie_id</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>704</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Log Contact Lookup Error</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_rowlevel</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage/>
+    <fields>
+      <field>
+        <name>CSF_REF</name>
+        </field>
+      <field>
+        <name>CSF_EMAIL</name>
+        </field>
+      <field>
+        <name>CSF_GSM</name>
+        </field>
+      <field>
+        <name>CSF_PHONE</name>
+        </field>
+      <field>
+        <name>err_desc</name>
+        </field>
+      <field>
+        <name>err_field</name>
+        </field>
+      <field>
+        <name>err_code</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>208</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Contact</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -495,34 +534,28 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>Y</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
-        <field>external_identifier</field>
+        <name>CSF_REF</name>
+        <field>id</field>
         <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>kring_subtype</name>
-        <field>contact_sub_type</field>
-        <condition>LIKE</condition>
         <name2/>
       </key>
       <value>
         <name>id</name>
-        <rename>contact_id_b</rename>
-        <default/>
+        <rename>contact_id</rename>
+        <default>0</default>
         <type>Integer</type>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>768</xloc>
-      <yloc>32</yloc>
+      <xloc>208</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Lookup Penn RelType</name>
+    <name>Mobiel Lookup</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -538,39 +571,72 @@
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>civicrm_relationship_type</table>
+      <table>civicrm_option_value</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>penningmeester_name_a_b</name>
-        <field>name_a_b</field>
+        <name>option_group_id</name>
+        <field>option_group_id</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <key>
-        <name>penningmeester_name_b_a</name>
-        <field>name_b_a</field>
+        <name>mobiel</name>
+        <field>name</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <value>
-        <name>id</name>
-        <rename>penningmeester_relation_type_id</rename>
+        <name>value</name>
+        <rename>mobiel_id</rename>
         <default/>
         <type>Integer</type>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
-      <yloc>32</yloc>
+      <xloc>992</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Lookup Secr RelType</name>
+    <name>No Contact Error</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>no_contact_message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>No contact found in table domus_civicrm</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>352</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Option Group Lookup</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -586,39 +652,33 @@
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>civicrm_relationship_type</table>
+      <table>civicrm_option_group</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>secretaris_name_a_b</name>
-        <field>name_a_b</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>secretaris_name_b_a</name>
-        <field>name_b_a</field>
+        <name>phone_type</name>
+        <field>name</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <value>
         <name>id</name>
-        <rename>secretaris_relation_type_id</rename>
-        <default/>
+        <rename>option_group_id</rename>
+        <default>0</default>
         <type>Integer</type>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>464</xloc>
-      <yloc>32</yloc>
+      <xloc>864</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Lookup Vrz RelType</name>
+    <name>Vast Lookup</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -634,39 +694,39 @@
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>civicrm_relationship_type</table>
+      <table>civicrm_option_value</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>voorzitter_name_a_b</name>
-        <field>name_a_b</field>
+        <name>option_group_id</name>
+        <field>option_group_id</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <key>
-        <name>voorzitter_name_b_a</name>
-        <field>name_b_a</field>
+        <name>vast</name>
+        <field>name</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <value>
-        <name>id</name>
-        <rename>voorzitter_relation_type_id</rename>
+        <name>value</name>
+        <rename>vast_id</rename>
         <default/>
         <type>Integer</type>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>320</xloc>
-      <yloc>32</yloc>
+      <xloc>1136</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Penningmeester&#x3f;</name>
+    <name>Filter Phone</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -676,7 +736,99 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Add Penningmeester Relation</send_true_to>
+<send_true_to>Add Phone</send_true_to>
+<send_false_to>Filter GSM</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>CSF_PHONE</leftvalue>
+   <function>IS NOT NULL</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Integer</type><text>4</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;</mask></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>352</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add Phone</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Domus Lokaal CiviCRM</connection>
+    <schema/>
+    <table>domus_phone</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>contact_id</column_name>
+          <stream_name>contact_id</stream_name>
+        </field>
+        <field>
+          <column_name>location_type_id</column_name>
+          <stream_name>correspondentie_id</stream_name>
+        </field>
+        <field>
+          <column_name>is_primary</column_name>
+          <stream_name>is_primary</stream_name>
+        </field>
+        <field>
+          <column_name>phone</column_name>
+          <stream_name>CSF_PHONE</stream_name>
+        </field>
+        <field>
+          <column_name>phone_type_id</column_name>
+          <stream_name>vast_id</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>528</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter GSM</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Lookup phone</send_true_to>
 <send_false_to/>
     <compare>
 <condition>
@@ -684,30 +836,129 @@
  <conditions>
   <condition>
    <negated>N</negated>
-   <leftvalue>Penningmeester</leftvalue>
+   <leftvalue>CSF_GSM</leftvalue>
    <function>IS NOT NULL</function>
    <rightvalue/>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>Penningmeester</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+   <value><name>constant</name><type>Integer</type><text>4</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;</mask></value>   </condition>
   </conditions>
  </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>272</xloc>
-      <yloc>416</yloc>
+      <xloc>448</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Secretaris&#x3f;</name>
+    <name>Add GSM</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Domus Lokaal CiviCRM</connection>
+    <schema/>
+    <table>domus_phone</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>contact_id</column_name>
+          <stream_name>contact_id</stream_name>
+        </field>
+        <field>
+          <column_name>location_type_id</column_name>
+          <stream_name>correspondentie_id</stream_name>
+        </field>
+        <field>
+          <column_name>is_primary</column_name>
+          <stream_name>is_primary</stream_name>
+        </field>
+        <field>
+          <column_name>phone</column_name>
+          <stream_name>CSF_GSM</stream_name>
+        </field>
+        <field>
+          <column_name>phone_type_id</column_name>
+          <stream_name>mobiel_id</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>912</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup phone</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Domus Lokaal CiviCRM</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>domus_phone</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CSF_REF</name>
+        <field>contact_id</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>CSF_GSM</name>
+        <field>phone</field>
+        <condition>&#x3c;&#x3e;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>already</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>608</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>First Phone&#x3f;</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -717,39 +968,27 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Add Secretaris Relation</send_true_to>
-<send_false_to>Penningmeester&#x3f;</send_false_to>
+<send_true_to>Add GSM</send_true_to>
+<send_false_to>Set field value to a constant</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>Secretaris</leftvalue>
-   <function>IS NOT NULL</function>
-   <rightvalue/>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>Secretaris</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
+ <leftvalue>already</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>272</xloc>
-      <yloc>288</yloc>
+      <xloc>736</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Voorzitter&#x3f;</name>
-    <type>FilterRows</type>
+    <name>Set field value to a constant</name>
+    <type>SetValueConstant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -758,37 +997,36 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Add Voorzitter Relation</send_true_to>
-<send_false_to>Secretaris&#x3f;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>Voorzitter</leftvalue>
-   <function>IS NOT NULL</function>
-   <rightvalue/>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>Voorzitter</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
+   <usevar>N</usevar>
+    <fields>
+      <field>
+        <name>is_primary</name>
+        <value>0</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>272</xloc>
-      <yloc>160</yloc>
+      <xloc>736</xloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
+      <error>
+        <source_step>Lookup Contact</source_step>
+        <target_step>Log Contact Lookup Error</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename>err_desc</descriptions_valuename>
+        <fields_valuename>err_field</fields_valuename>
+        <codes_valuename>err_code</codes_valuename>
+        <max_errors/>
+        <max_pct_errors/>
+        <min_pct_rows/>
+      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>

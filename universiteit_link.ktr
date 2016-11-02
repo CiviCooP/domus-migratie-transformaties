@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>kring_bestuur</name>
+    <name>universiteit_link</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -130,19 +130,13 @@
     </attributes>
   </connection>
   <order>
+  <hop> <from>Jaar Empty&#x3f;</from><to>Add Relation with no end</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Constants</from><to>Lookup Relation Type</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Relation Type</from><to>Lookup Universiteit</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Source Data</from><to>Add Constants</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Constants</from><to>Lookup Vrz RelType</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Vrz RelType</from><to>Lookup Secr RelType</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Secr RelType</from><to>Lookup Penn RelType</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Penn RelType</from><to>Lookup Kring</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Kring</from><to>Voorzitter&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Voorzitter&#x3f;</from><to>Add Voorzitter Relation</to><enabled>Y</enabled> </hop>
-  <hop> <from>Voorzitter&#x3f;</from><to>Secretaris&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Voorzitter Relation</from><to>Secretaris&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Secretaris&#x3f;</from><to>Add Secretaris Relation</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Secretaris Relation</from><to>Penningmeester&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Secretaris&#x3f;</from><to>Penningmeester&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Penningmeester&#x3f;</from><to>Add Penningmeester Relation</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Universiteit</from><to>Jaar Empty&#x3f;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Jaar Empty&#x3f;</from><to>End Date</to><enabled>Y</enabled> </hop>
+  <hop> <from>End Date</from><to>Add Relation with end</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add Constants</name>
@@ -157,73 +151,13 @@
            </partitioning>
     <fields>
       <field>
-        <name>voorzitter_name_a_b</name>
+        <name>name_a_b</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>is voorzitter van</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>voorzitter_name_b_a</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>voorzitter is</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>secretaris_name_a_b</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>is secretaris van</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>secretaris_name_b_a</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>secretaris is</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>penningmeester_name_a_b</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>is penningmeester van</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>penningmeester_name_b_a</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>penningmeester is</nullif>
+        <nullif>afgestudeerd van</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -253,13 +187,37 @@
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>kring_subtype</name>
+        <name>subtype</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>Huisartsenkring</nullif>
+        <nullif>Universiteit</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>name_b_a</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>afgestudeerde is</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>date_part</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>-05-31 00&#x3a;00&#x3a;00</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -274,7 +232,7 @@
     </step>
 
   <step>
-    <name>Add Penningmeester Relation</name>
+    <name>Add Relation with no end</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -304,7 +262,7 @@
     <fields>
         <field>
           <column_name>contact_id_a</column_name>
-          <stream_name>Penningmeester</stream_name>
+          <stream_name>LidNummer</stream_name>
         </field>
         <field>
           <column_name>contact_id_b</column_name>
@@ -312,7 +270,7 @@
         </field>
         <field>
           <column_name>relationship_type_id</column_name>
-          <stream_name>penningmeester_relation_type_id</stream_name>
+          <stream_name>relationship_type_id</stream_name>
         </field>
         <field>
           <column_name>is_active</column_name>
@@ -325,124 +283,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add Secretaris Relation</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Domus Lokaal CiviCRM</connection>
-    <schema/>
-    <table>domus_relationship</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>contact_id_a</column_name>
-          <stream_name>Secretaris</stream_name>
-        </field>
-        <field>
-          <column_name>contact_id_b</column_name>
-          <stream_name>contact_id_b</stream_name>
-        </field>
-        <field>
-          <column_name>relationship_type_id</column_name>
-          <stream_name>secretaris_relation_type_id</stream_name>
-        </field>
-        <field>
-          <column_name>is_active</column_name>
-          <stream_name>is_active</stream_name>
-        </field>
-        <field>
-          <column_name>is_permission_a_b</column_name>
-          <stream_name>is_permission</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add Voorzitter Relation</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Domus Lokaal CiviCRM</connection>
-    <schema/>
-    <table>domus_relationship</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>contact_id_a</column_name>
-          <stream_name>Voorzitter</stream_name>
-        </field>
-        <field>
-          <column_name>contact_id_b</column_name>
-          <stream_name>contact_id_b</stream_name>
-        </field>
-        <field>
-          <column_name>relationship_type_id</column_name>
-          <stream_name>voorzitter_relation_type_id</stream_name>
-        </field>
-        <field>
-          <column_name>is_active</column_name>
-          <stream_name>is_active</stream_name>
-        </field>
-        <field>
-          <column_name>is_permission_a_b</column_name>
-          <stream_name>is_permission</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
-      <yloc>160</yloc>
+      <xloc>832</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -459,7 +301,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT&#xa;  KringCode&#xa;, Voorzitter&#xa;, Secretaris&#xa;, Penningmeester&#xa;FROM kringen&#xa;WHERE &#x28;Voorzitter IS NOT NULL AND Voorzitter &#x3c;&#x3e; &#x27;&#x27; AND Voorzitter &#x3c;&#x3e; 0&#x29; &#xa;OR &#x28;Secretaris IS NOT NULL AND Secretaris &#x3c;&#x3e; &#x27;&#x27; AND Secretaris &#x3c;&#x3e; 0&#x29; &#xa;OR &#x28;Penningmeester IS NOT NULL AND Penningmeester &#x3c;&#x3e; &#x27;&#x27; AND Penningmeester &#x3c;&#x3e; 0&#x29;&#xa;</sql>
+    <sql>SELECT&#xa;  l.LidNummer&#xa;, l.JaarAfgestudeerd&#xa;, l.UniversiteitCode&#xa;, u.Naam AS UniversiteitNaam&#xa;FROM leden l LEFT JOIN universiteiten u ON l.UniversiteitCode &#x3d; u.UniversiteitCode&#xa;WHERE l.JaarAfgestudeerd &#x3c;&#x3e; &#x27;&#x27; OR l.UniversiteitCode &#x3c;&#x3e; 0</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -474,7 +316,7 @@
     </step>
 
   <step>
-    <name>Lookup Kring</name>
+    <name>Lookup Universiteit</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -495,13 +337,13 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>Y</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
-        <field>external_identifier</field>
+        <name>UniversiteitNaam</name>
+        <field>organization_name</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <key>
-        <name>kring_subtype</name>
+        <name>subtype</name>
         <field>contact_sub_type</field>
         <condition>LIKE</condition>
         <name2/>
@@ -515,14 +357,14 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>768</xloc>
+      <xloc>496</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Lookup Penn RelType</name>
+    <name>Lookup Relation Type</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -543,35 +385,64 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>penningmeester_name_a_b</name>
+        <name>name_a_b</name>
         <field>name_a_b</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <key>
-        <name>penningmeester_name_b_a</name>
+        <name>name_b_a</name>
         <field>name_b_a</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <value>
         <name>id</name>
-        <rename>penningmeester_relation_type_id</rename>
+        <rename>relationship_type_id</rename>
         <default/>
         <type>Integer</type>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>336</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Lookup Secr RelType</name>
-    <type>DBLookup</type>
+    <name>Jaar Empty&#x3f;</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Add Relation with no end</send_true_to>
+<send_false_to>End Date</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>JaarAfgestudeerd</leftvalue>
+ <function>IS NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>656</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add Relation with end</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -581,45 +452,59 @@
            <schema_name/>
            </partitioning>
     <connection>Domus Lokaal CiviCRM</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>civicrm_relationship_type</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>secretaris_name_a_b</name>
-        <field>name_a_b</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>secretaris_name_b_a</name>
-        <field>name_b_a</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>secretaris_relation_type_id</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
+    <schema/>
+    <table>domus_relationship</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>contact_id_a</column_name>
+          <stream_name>LidNummer</stream_name>
+        </field>
+        <field>
+          <column_name>contact_id_b</column_name>
+          <stream_name>contact_id_b</stream_name>
+        </field>
+        <field>
+          <column_name>relationship_type_id</column_name>
+          <stream_name>relationship_type_id</stream_name>
+        </field>
+        <field>
+          <column_name>is_active</column_name>
+          <stream_name>is_active</stream_name>
+        </field>
+        <field>
+          <column_name>is_permission_a_b</column_name>
+          <stream_name>is_permission</stream_name>
+        </field>
+        <field>
+          <column_name>end_date</column_name>
+          <stream_name>end_date</stream_name>
+        </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>464</xloc>
-      <yloc>32</yloc>
+      <xloc>832</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Lookup Vrz RelType</name>
-    <type>DBLookup</type>
+    <name>End Date</name>
+    <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -628,162 +513,38 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Lokaal CiviCRM</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>civicrm_relationship_type</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>voorzitter_name_a_b</name>
-        <field>name_a_b</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>voorzitter_name_b_a</name>
-        <field>name_b_a</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>voorzitter_relation_type_id</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
+       <calculation><field_name>end_date_string</field_name>
+<calc_type>ADD</calc_type>
+<field_a>JaarAfgestudeerd</field_a>
+<field_b>date_part</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>end_date</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>end_date_string</field_a>
+<field_b/>
+<field_c/>
+<value_type>Date</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask>yyyy-MM-dd HH&#x3a;mm&#x3a;ss</conversion_mask>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>320</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Penningmeester&#x3f;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Add Penningmeester Relation</send_true_to>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>Penningmeester</leftvalue>
-   <function>IS NOT NULL</function>
-   <rightvalue/>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>Penningmeester</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>272</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Secretaris&#x3f;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Add Secretaris Relation</send_true_to>
-<send_false_to>Penningmeester&#x3f;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>Secretaris</leftvalue>
-   <function>IS NOT NULL</function>
-   <rightvalue/>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>Secretaris</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>272</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Voorzitter&#x3f;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Add Voorzitter Relation</send_true_to>
-<send_false_to>Secretaris&#x3f;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>Voorzitter</leftvalue>
-   <function>IS NOT NULL</function>
-   <rightvalue/>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>Voorzitter</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>272</xloc>
-      <yloc>160</yloc>
+      <xloc>656</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
