@@ -877,10 +877,6 @@
           <stream_name>is_opt_out</stream_name>
         </field>
         <field>
-          <column_name>external_identifier</column_name>
-          <stream_name>KringCode</stream_name>
-        </field>
-        <field>
           <column_name>sort_name</column_name>
           <stream_name>sort_name</stream_name>
         </field>
