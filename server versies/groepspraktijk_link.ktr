@@ -328,8 +328,8 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>Y</eat_row_on_failure>
       <key>
-        <name>riziv</name>
-        <field>external_identifier</field>
+        <name>Lidnummer</name>
+        <field>id</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>

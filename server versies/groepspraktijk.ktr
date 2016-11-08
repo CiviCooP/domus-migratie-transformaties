@@ -1081,8 +1081,8 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>external_identifier</name>
-        <field>external_identifier</field>
+        <name>organization_name</name>
+        <field>organization_name</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
