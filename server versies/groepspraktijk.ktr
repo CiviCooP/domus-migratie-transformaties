@@ -77,7 +77,7 @@
   </notepads>
   <connection>
     <name>Domus Accept CiviCRM Database</name>
-    <server>mysql.s806.sureserver.com</server>
+    <server>mysql.s700.sureserver.com</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>domusmedica_accept_civicrm</database>

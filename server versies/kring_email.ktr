@@ -77,7 +77,7 @@
   </notepads>
   <connection>
     <name>Domus Accept CiviCRM Database</name>
-    <server>mysql.s806.sureserver.com</server>
+    <server>mysql.s700.sureserver.com</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>domusmedica_accept_civicrm</database>
@@ -1090,7 +1090,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT&#xa;  KringCode&#xa;, Kringemail&#xa;FROM kringen&#xa;WHERE Kringemail IS NOT NULL AND Kringemail &#x3c;&#x3e; &#x27;&#x27;&#xa;</sql>
+    <sql>SELECT&#xa;  KringCode&#xa;, Kringemail&#xa;FROM kringen&#xa;WHERE Kringemail IS NOT NULL AND Kringemail &#x3c;&#x3e; &#x27;&#x27; AND ErkendeKring &#x3c;&#x3e; &#x27;O&#x27;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

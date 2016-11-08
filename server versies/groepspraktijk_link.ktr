@@ -292,7 +292,7 @@
            <schema_name/>
            </partitioning>
     <connection>Domus BronData</connection>
-    <sql>SELECT&#xa;  GroepspraktijkCode&#xa;, Lidnummer&#xa;FROM groepspraktijken_link&#xa;</sql>
+    <sql>SELECT&#xa;  GroepspraktijkCode&#xa;, Lidnummer&#xa;FROM groepspraktijken_link&#xa;ORDER BY GroepspraktijkCode, Lidnummer&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
