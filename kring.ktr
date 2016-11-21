@@ -131,7 +131,7 @@
   </connection>
   <order>
   <hop> <from>Add contacts</from><to>Lookup contact id</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Names</from><to>Add contacts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Names &#x2b; ExtId</from><to>Add contacts</to><enabled>Y</enabled> </hop>
   <hop> <from>Set Dates</from><to>Add constants</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Sys Date</from><to>Set Dates</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Source Data</from><to>Get Sys Date</to><enabled>Y</enabled> </hop>
@@ -142,7 +142,7 @@
   <hop> <from>Add constants</from><to>Lookup Location</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Phone Group</from><to>Lookup Phone</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Phone</from><to>Remove temp lookup fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove temp lookup fields</from><to>Add Names</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove temp lookup fields</from><to>Add Names &#x2b; ExtId</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Location</from><to>Lookup Phone Group</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter note</from><to>Add Note</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter note</from><to>Filter Phone</to><enabled>Y</enabled> </hop>
@@ -278,7 +278,7 @@
     </step>
 
   <step>
-    <name>Add Names</name>
+    <name>Add Names &#x2b; ExtId</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -334,6 +334,20 @@
 <calc_type>COPY_FIELD</calc_type>
 <field_a>organization_name</field_a>
 <field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>external_id</field_name>
+<calc_type>ADD</calc_type>
+<field_a>external_prefix</field_a>
+<field_b>KringCode</field_b>
 <field_c/>
 <value_type>String</value_type>
 <value_length>-1</value_length>
@@ -810,6 +824,18 @@
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
+      <field>
+        <name>external_prefix</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>HAK_</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -935,6 +961,10 @@
         <field>
           <column_name>nick_name</column_name>
           <stream_name>AfgekorteNaam</stream_name>
+        </field>
+        <field>
+          <column_name>external_identifier</column_name>
+          <stream_name>external_id</stream_name>
         </field>
     </fields>
      <cluster_schema/>
@@ -1266,7 +1296,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
