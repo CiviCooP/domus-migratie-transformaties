@@ -76,33 +76,6 @@
   <notepads>
   </notepads>
   <connection>
-    <name>Domus Accept CiviCRM Database</name>
-    <server>mysql.s700.sureserver.com</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>domusmedica_accept_civicrm</database>
-    <port>3306</port>
-    <username>ErikHDB</username>
-    <password>Encrypted 2be98afc81bec86aff92d8447ed9e9882</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
     <name>Domus BronData</name>
     <server>localhost</server>
     <type>MYSQL</type>
@@ -130,14 +103,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>Domus Lokaal CiviCRM</name>
-    <server>localhost</server>
+    <name>Domus Prod CiviCRM Databases</name>
+    <server>mysql.s700.sureserver.com</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>domus_civicrm</database>
+    <database>domusmedica_prod_civicrm</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
+    <username>ErikHDB</username>
+    <password>Encrypted 2be98afc81bec86aff92d8447ed9e9882</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -214,7 +187,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
+    <connection>Domus Prod CiviCRM Databases</connection>
     <schema/>
     <table>domus_contact</table>
     <commit>1000</commit>
@@ -336,7 +309,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
+    <connection>Domus Prod CiviCRM Databases</connection>
     <schema/>
     <table>domus_contact</table>
     <commit>1000</commit>
@@ -455,7 +428,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Lokaal CiviCRM</connection>
+    <connection>Domus Prod CiviCRM Databases</connection>
     <sql>SELECT&#xa;  id&#xa;, contact_id&#xa;, membership_type_id&#xa;, join_date&#xa;, start_date&#xa;, end_date&#xa;, source&#xa;, status_id&#xa;, is_override&#xa;, owner_membership_id&#xa;, max_related&#xa;, is_test&#xa;, is_pay_later&#xa;, contribution_recur_id&#xa;, campaign_id&#xa;, is_processed&#xa;, &#x22; &#x22; as empty_space&#xa;FROM domus_membership&#xa;</sql>
     <limit>0</limit>
     <lookup/>
@@ -744,7 +717,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
+    <connection>Domus Prod CiviCRM Databases</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>

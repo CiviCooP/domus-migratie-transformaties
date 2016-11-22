@@ -76,14 +76,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>Domus Accept CiviCRM Database</name>
-    <server>mysql.s700.sureserver.com</server>
+    <name>Domus BronData</name>
+    <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>domusmedica_accept_civicrm</database>
+    <database>domus_migratie</database>
     <port>3306</port>
-    <username>ErikHDB</username>
-    <password>Encrypted 2be98afc81bec86aff92d8447ed9e9882</password>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -103,14 +103,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>Domus BronData</name>
-    <server>localhost</server>
+    <name>Domus Prod CiviCRM Databases</name>
+    <server>mysql.s700.sureserver.com</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>domus_migratie</database>
+    <database>domusmedica_prod_civicrm</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4a600bd61d296addb</password>
+    <username>ErikHDB</username>
+    <password>Encrypted 2be98afc81bec86aff92d8447ed9e9882</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -242,7 +242,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
+    <connection>Domus Prod CiviCRM Databases</connection>
     <schema/>
     <table>domus_relationship</table>
     <commit>1000</commit>
@@ -304,7 +304,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
+    <connection>Domus Prod CiviCRM Databases</connection>
     <schema/>
     <table>domus_relationship</table>
     <commit>1000</commit>
@@ -464,7 +464,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
+    <connection>Domus Prod CiviCRM Databases</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -512,7 +512,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>Domus Accept CiviCRM Database</connection>
+    <connection>Domus Prod CiviCRM Databases</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>

@@ -136,7 +136,6 @@
   <hop> <from>No Email 1</from><to>Lookup contact id 1</to><enabled>Y</enabled> </hop>
   <hop> <from>Split Emails</from><to>Add constants</to><enabled>Y</enabled> </hop>
   <hop> <from>Add constants</from><to>Loc Corr Lookup</to><enabled>Y</enabled> </hop>
-  <hop> <from>Loc Corr Lookup</from><to>Filter email 1</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup contact id 1</from><to>Add Email 1</to><enabled>Y</enabled> </hop>
   <hop> <from>Add Email 1</from><to>Remove Email1</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter email 2</from><to>Lookup Email 2</to><enabled>Y</enabled> </hop>
@@ -202,6 +201,8 @@
   <hop> <from>No Email 10</from><to>Lookup contact id 10</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup contact id 10</from><to>Add Email 10</to><enabled>Y</enabled> </hop>
   <hop> <from>Add Email 10</from><to>Remove Email10</to><enabled>Y</enabled> </hop>
+  <hop> <from>Loc Corr Lookup</from><to>ExtId</to><enabled>Y</enabled> </hop>
+  <hop> <from>ExtId</from><to>Filter email 1</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add Email 1</name>
@@ -251,7 +252,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
@@ -305,7 +306,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
       </GUI>
@@ -359,7 +360,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -413,7 +414,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
@@ -467,7 +468,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
@@ -521,7 +522,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
       </GUI>
@@ -575,7 +576,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
@@ -629,7 +630,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
       </GUI>
@@ -683,7 +684,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>704</yloc>
       <draw>Y</draw>
       </GUI>
@@ -737,7 +738,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
+      <xloc>1040</xloc>
       <yloc>800</yloc>
       <draw>Y</draw>
       </GUI>
@@ -779,6 +780,18 @@
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
+      <field>
+        <name>external_prefix</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>HAK_</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -811,7 +824,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
@@ -840,7 +853,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
       </GUI>
@@ -869,7 +882,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -898,7 +911,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
@@ -927,7 +940,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
@@ -956,7 +969,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
       </GUI>
@@ -985,7 +998,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1014,7 +1027,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1043,7 +1056,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>704</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1072,7 +1085,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>560</xloc>
       <yloc>800</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1182,7 +1195,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1224,7 +1237,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1266,7 +1279,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1308,7 +1321,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1350,7 +1363,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1392,7 +1405,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1434,7 +1447,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1476,7 +1489,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1518,7 +1531,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>704</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1560,7 +1573,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>624</xloc>
+      <xloc>672</xloc>
       <yloc>800</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1588,7 +1601,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1602,7 +1615,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1630,7 +1643,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1644,7 +1657,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1672,7 +1685,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1686,7 +1699,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1714,7 +1727,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1728,7 +1741,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1756,7 +1769,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1770,7 +1783,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1798,7 +1811,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1812,7 +1825,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1840,7 +1853,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1854,7 +1867,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1882,7 +1895,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1896,7 +1909,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1924,7 +1937,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1938,7 +1951,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>704</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1966,7 +1979,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>KringCode</name>
+        <name>external_id</name>
         <field>external_identifier</field>
         <condition>&#x3d;</condition>
         <name2/>
@@ -1980,7 +1993,7 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
+      <xloc>912</xloc>
       <yloc>800</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2009,7 +2022,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2038,7 +2051,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2067,7 +2080,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2096,7 +2109,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2125,7 +2138,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2154,7 +2167,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2183,7 +2196,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2212,7 +2225,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2241,7 +2254,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>704</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2270,7 +2283,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>736</xloc>
+      <xloc>784</xloc>
       <yloc>800</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2292,7 +2305,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2314,7 +2327,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2336,7 +2349,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2358,7 +2371,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2380,7 +2393,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2402,7 +2415,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2424,7 +2437,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2446,7 +2459,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2468,7 +2481,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>704</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2490,7 +2503,7 @@
       </remove>      <remove>        <name>contact_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1104</xloc>
+      <xloc>1152</xloc>
       <yloc>800</yloc>
       <draw>Y</draw>
       </GUI>
@@ -2643,6 +2656,39 @@
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>160</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>ExtId</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>external_id</field_name>
+<calc_type>ADD</calc_type>
+<field_a>external_prefix</field_a>
+<field_b>KringCode</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>480</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
